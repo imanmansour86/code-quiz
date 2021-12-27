@@ -10,6 +10,7 @@ html {
 body {
   height: 100%;
   width: 100%;
+  background-color: #eff5f8;
 }
 
 button {
@@ -19,14 +20,10 @@ button {
   padding: 15px 15px;
   text-align: center;
   display: inline-block;
-  border-radius: 20px;
+  border-radius: 15px;
   transition-duration: 0.4s;
   margin: 20px;
   border: grey;
-}
-
-body {
-  background-color: #eff5f8;
 }
 
 h1 {
@@ -43,4 +40,38 @@ h1 {
 
 button:hover {
   background-color: grey;
+}
+
+#question-body {
+  /* display: none; */
+  font-size: 20px;
+  width: 100%;
+}
+
+.question-header {
+  display: block;
+  position: relative;
+  padding-left: 45px;
+  width: 100%;
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.radio-main {
+  width: 100%;
+  display: block;
+  padding: 10px 10px 10px 10px;
+  cursor: pointer;
+  user-select: none;
+  word-wrap: none;
+  line-height: 50px;
+}
+
+.radio-sub {
+  width: 50%;
+  margin: 10px;
+}
+.radio-sub:hover {
+  background-color: gray;
+  width: 20%;
 }
