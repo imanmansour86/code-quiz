@@ -1,0 +1,46 @@
+* {
+  font-family: "Ubuntu", sans-serif;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  background-color: #333333;
+  font-size: 20px;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 20px;
+  transition-duration: 0.4s;
+  margin: 20px;
+  border: grey;
+}
+
+body {
+  background-color: #eff5f8;
+}
+
+h1 {
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.quiz-intro {
+  font-size: 20px;
+  text-align: center;
+  line-height: 30px;
+}
+
+button:hover {
+  background-color: grey;
+}
