@@ -42,11 +42,11 @@ button:hover {
   background-color: grey;
 }
 
-#question-body {
+/* #question-body {
   display: none;
   font-size: 20px;
   width: 100%;
-}
+} */
 
 .question-header {
   display: block;
@@ -57,7 +57,7 @@ button:hover {
   line-height: 30px;
 }
 
-.radio-main {
+/* .radio-main {
   width: 100%;
   display: block;
   padding: 10px 10px 10px 10px;
@@ -65,7 +65,7 @@ button:hover {
   user-select: none;
   word-wrap: none;
   line-height: 50px;
-}
+} */
 
 .radio-sub {
   width: 50%;
