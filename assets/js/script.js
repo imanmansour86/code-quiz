@@ -70,42 +70,49 @@ var quizQuestions = [
 ];
 
 var body = document.body;
-var questionHeader = document.createElement("div");
-questionHeader.style.display = "none";
-// questionHeader.id = "question-body";
 
-questionHeader.textContent = quizQuestions[0].question;
-questionHeader.classList.add("question-header");
-body.appendChild(questionHeader);
+//bigger loop to loop over entire questions
 
-for (i = 0; i < 4; i++) {
-  var newDiv = document.createElement("div");
+for (j = 0; j < quizQuestions.length; j++) {
+  var questionHeader = document.createElement("div");
+  //questionHeader.style.display = "none";
 
-  questionHeader.appendChild(newDiv);
+  questionHeader.textContent = quizQuestions[j].question;
+  questionHeader.classList.add("question-header");
+  body.appendChild(questionHeader);
+  //loop to create radio buttons for  question
+  for (i = 0; i < quizQuestions[j].answers.length; i++) {
+    var newDiv = document.createElement("div");
 
-  newDiv.classList.add("radio-sub");
+    questionHeader.appendChild(newDiv);
 
-  var radioBtn = document.createElement("input");
-  radioBtn.setAttribute("type", "radio");
-  radioBtn.setAttribute("name", "q1");
-  radioBtn.setAttribute("value", quizQuestions[0].answers[i]);
-  radioBtn.setAttribute("id", "q[" + i + "]");
+    newDiv.classList.add("radio-sub");
 
-  newDiv.appendChild(radioBtn);
+    var radioBtn = document.createElement("input");
+    radioBtn.setAttribute("type", "radio");
+    radioBtn.setAttribute("name", "q1");
+    radioBtn.setAttribute("value", quizQuestions[j].answers[i]);
+    radioBtn.setAttribute("id", "q[" + i + "]");
 
-  var radioLabel = document.createElement("label");
-  radioLabel.innerHTML = quizQuestions[0].answers[i];
-  newDiv.appendChild(radioLabel);
+    newDiv.appendChild(radioBtn);
 
-  radioBtn.addEventListener("click", function (e) {
-    console.log(e.target.value);
+    var radioLabel = document.createElement("label");
+    radioLabel.innerHTML = quizQuestions[j].answers[i];
+    newDiv.appendChild(radioLabel);
 
-    var correctChoice = quizQuestions[0].correctAnswer;
+    // take a copy of j so that the listener does not referenc the final j when it is clicked
+    const jCopy = j;
+    radioBtn.addEventListener("click", function (e) {
+      console.log(e.target.value);
 
-    if (e.target.value == correctChoice) {
-      console.log("user answer is", e.target.value);
-      score += 1;
-      console.log("the score is " + score);
-    }
-  });
+      console.log("debug here " + quizQuestions, jCopy);
+      var correctChoice = quizQuestions[jCopy].correctAnswer;
+
+      if (e.target.value == correctChoice) {
+        console.log("user answer is", e.target.value);
+        score += 1;
+        console.log("the score is " + score);
+      }
+    });
+  }
 }
