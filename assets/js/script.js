@@ -6,9 +6,13 @@ var timer = document.querySelector(".time");
 var startQuizBtn = document.getElementById("start-quiz");
 var nextQuestion = document.getElementById("next-question");
 var questionHeader = document.createElement("div");
+var scorePage = document.getElementById("score-page");
 var highScore = document.getElementById("high-scores");
+var currentScore = document.getElementById("total-score");
+var submitInitials = document.getElementById("submit-initials");
 
 nextQuestion.style.display = "none";
+scorePage.style.display = "none";
 var mainContainer = document.querySelector(".main-container");
 
 startQuizBtn.addEventListener("click", setTime);
@@ -18,8 +22,6 @@ function setTime() {
 
   answerQuestion();
   var timeInterval = setInterval(function () {
-    // questionHeader.style.display = "block";
-
     if (quizTime > 0) {
       timer.textContent = "Time remaining: " + quizTime;
       quizTime--;
@@ -28,12 +30,19 @@ function setTime() {
     if (quizTime === 0) {
       console.log("time is up");
       clearInterval(timeInterval);
-      timer.textContent = "Time is up! ";
+      if (j < quizQuestions.length - 1) timer.textContent = "Time is up! ";
+      else timer.textContent = "Congrats!! done!";
       nextQuestion.style.display = "none";
       questionHeader.style.display = "none";
+      scorePage.style.display = "block";
+      currentScore.innerHTML = "Total score is: " + score;
     }
-  }, 500);
+  }, 1000);
 }
+
+submitInitials.addEventListener("click", function () {
+  console.log("submit your initial here");
+});
 
 var quizQuestions = [
   {
@@ -90,6 +99,8 @@ nextQuestion.addEventListener("click", function () {
   if (j >= quizQuestions.length) {
     console.log("test here" + quizQuestions.length);
     alert("no more questions");
+    nextQuestion.style.display = "none";
+    quizTime = 0;
   } else {
     answerQuestion();
   }
@@ -114,7 +125,7 @@ function answerQuestion() {
   var questionResult = document.createElement("div");
   questionResult.classList.add("question-result");
 
-  //loop to create radio buttons for  question
+  //loop to create radio buttons for question
   for (i = 0; i < quizQuestions[j].answers.length; i++) {
     var radioContainer = document.createElement("div");
 
@@ -133,7 +144,6 @@ function answerQuestion() {
     radioLabel.innerHTML = quizQuestions[j].answers[i];
     radioContainer.appendChild(radioLabel);
 
-    // const jCopy = j;
     radioBtn.addEventListener("click", function (e) {
       console.log("the click is ", e.target.value);
 
@@ -143,14 +153,12 @@ function answerQuestion() {
 
       if (e.target.value == correctChoice) {
         console.log("user answer is", e.target.value);
-        score += 1;
+        score += 10;
         console.log("the answer is correct, score is " + score);
         questionResult.textContent = "Correct answer";
       } else {
-        score -= 1;
+        score -= 10;
         quizTime -= 10;
-
-        console.log("the answer is wrong, score is ", score);
 
         questionResult.textContent = "Wrong answer";
       }

@@ -86,3 +86,13 @@ button:hover {
   font-weight: 10px;
   color: red;
 }
+
+#score-page {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#initial {
+  height:30px;
+  font-size:14pt;
