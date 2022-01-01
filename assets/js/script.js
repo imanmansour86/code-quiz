@@ -44,8 +44,8 @@ var quizQuestions = [
   },
   {
     question: "Inside which HTML element do we put the JavaScript?",
-    answers: ["<js>", "<scripting>", "<script>", "<javascript>"],
-    correctAnswer: "<script>",
+    answers: ["js", "scripting", "script", "javascript"],
+    correctAnswer: "script",
   },
   {
     question: "Which of the following best describes JavaScript?",
@@ -73,46 +73,71 @@ var body = document.body;
 
 //bigger loop to loop over entire questions
 
-for (j = 0; j < quizQuestions.length; j++) {
-  var questionHeader = document.createElement("div");
-  //questionHeader.style.display = "none";
+let j = 0;
 
-  questionHeader.textContent = quizQuestions[j].question;
-  questionHeader.classList.add("question-header");
-  body.appendChild(questionHeader);
-  //loop to create radio buttons for  question
-  for (i = 0; i < quizQuestions[j].answers.length; i++) {
-    var newDiv = document.createElement("div");
+var question = document.createElement("div");
 
-    questionHeader.appendChild(newDiv);
+var questionHeader = document.createElement("div");
+questionHeader.setAttribute("id", j);
+// questionHeader.style.display = "none";
 
-    newDiv.classList.add("radio-sub");
+// var currentPosition = 0;
+// if {
 
-    var radioBtn = document.createElement("input");
-    radioBtn.setAttribute("type", "radio");
-    radioBtn.setAttribute("name", "q1");
-    radioBtn.setAttribute("value", quizQuestions[j].answers[i]);
-    radioBtn.setAttribute("id", "q[" + i + "]");
+// }
+//  (currentPosition < quizQuestions.length)
+//   var t = document.getElementById("j");
+//   t.style.display = "block";
 
-    newDiv.appendChild(radioBtn);
+questionHeader.textContent = quizQuestions[j].question;
+questionHeader.classList.add("question-header");
+question.appendChild(questionHeader);
+body.appendChild(question);
 
-    var radioLabel = document.createElement("label");
-    radioLabel.innerHTML = quizQuestions[j].answers[i];
-    newDiv.appendChild(radioLabel);
+var questionResult = document.createElement("div");
 
-    // take a copy of j so that the listener does not referenc the final j when it is clicked
-    const jCopy = j;
-    radioBtn.addEventListener("click", function (e) {
-      console.log(e.target.value);
+//loop to create radio buttons for  question
+for (i = 0; i < quizQuestions[j].answers.length; i++) {
+  var radioContainer = document.createElement("div");
 
-      console.log("debug here " + quizQuestions, jCopy);
-      var correctChoice = quizQuestions[jCopy].correctAnswer;
+  questionHeader.appendChild(radioContainer);
 
-      if (e.target.value == correctChoice) {
-        console.log("user answer is", e.target.value);
-        score += 1;
-        console.log("the score is " + score);
-      }
-    });
-  }
+  radioContainer.classList.add("radio-sub");
+
+  var radioBtn = document.createElement("input");
+  radioBtn.setAttribute("type", "radio");
+  radioBtn.setAttribute("name", "q1");
+  radioBtn.setAttribute("value", quizQuestions[j].answers[i]);
+  radioBtn.setAttribute("id", "q[" + j + "]");
+  radioContainer.appendChild(radioBtn);
+
+  var radioLabel = document.createElement("label");
+  radioLabel.innerHTML = quizQuestions[j].answers[i];
+  radioContainer.appendChild(radioLabel);
+
+  // take a copy of j so that the listener does not reference the final j when it is clicked
+  const jCopy = j;
+  radioBtn.addEventListener("click", function (e) {
+    console.log("the click is ", e.currentTarget.id);
+
+    var t = document.getElementById(jCopy);
+    console.log("test333+ " + t);
+
+    document.getElementById(jCopy).appendChild(questionResult);
+
+    var correctChoice = quizQuestions[jCopy].correctAnswer;
+
+    if (e.target.value == correctChoice) {
+      console.log("user answer is", e.target.value);
+      score += 1;
+      console.log("the answer is correct, score is " + score);
+
+      questionResult.textContent = "the answer is correct";
+    } else {
+      score -= 1;
+      console.log("wrong answer, new scroe is ", score);
+
+      questionResult.textContent = "the answer is wrong";
+    }
+  });
 }
