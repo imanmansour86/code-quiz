@@ -10,6 +10,8 @@ var scorePage = document.getElementById("score-page");
 var highScore = document.getElementById("high-scores");
 var currentScore = document.getElementById("total-score");
 var submitInitials = document.getElementById("submit-initials");
+var displayHighScore = document.getElementById("high-score");
+displayHighScore.style.display = "none";
 
 nextQuestion.style.display = "none";
 scorePage.style.display = "none";
@@ -40,9 +42,42 @@ function setTime() {
   }, 1000);
 }
 
-submitInitials.addEventListener("click", function () {
-  console.log("submit your initial here");
+submitInitials.addEventListener("click", function (e) {
+  e.preventDefault();
+  var initials = document.getElementById("initial").value;
+  console.log("submit your initial here " + initials);
+
+  localStorage.setItem(initials, score);
+  console.log(localStorage);
+  scorePage.style.display = "none";
+  timer.textContent = "Score Page";
+  viewHighscore();
 });
+
+highScore.addEventListener("click", viewHighscore);
+
+function viewHighscore() {
+  mainContainer.style.display = "none";
+  displayHighScore.style.display = "flex";
+
+  // let initialName = localStorage.getItem("initials");
+
+  var name = document.getElementById("name");
+  var score = document.getElementById("score");
+
+  for (let [key, value] of Object.entries(localStorage)) {
+    console.log(`${key}: ${value}`);
+
+    const newNameDiv = document.createElement("div");
+    const newScoreDiv = document.createElement("div");
+
+    name.appendChild(newNameDiv);
+    score.appendChild(newScoreDiv);
+
+    newNameDiv.textContent = key;
+    newScoreDiv.textContent = value;
+  }
+}
 
 var quizQuestions = [
   {
@@ -104,10 +139,6 @@ nextQuestion.addEventListener("click", function () {
   } else {
     answerQuestion();
   }
-});
-
-highScore.addEventListener("click", function () {
-  console.log("view high score");
 });
 
 function answerQuestion() {

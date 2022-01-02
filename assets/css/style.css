@@ -57,19 +57,10 @@ button:hover {
   line-height: 30px;
 }
 
-/* .radio-main {
-  width: 100%;
-  display: block;
-  padding: 10px 10px 10px 10px;
-  cursor: pointer;
-  user-select: none;
-  word-wrap: none;
-  line-height: 50px;
-} */
-
 .radio-sub {
   width: 50%;
   margin: 10px;
+  user-select: none;
 }
 .radio-sub:hover {
   background-color: gray;
@@ -84,7 +75,7 @@ button:hover {
 .question-result {
   font-style: italic;
   font-weight: 10px;
-  color: red;
+  color: grey;
 }
 
 #score-page {
@@ -94,5 +85,22 @@ button:hover {
 }
 
 #initial {
-  height:30px;
-  font-size:14pt;
+  height: 30px;
+  font-size: 14pt;
+}
+
+#high-score {
+  display: flex;
+  flex-direction: row;
+  font-size: 14pt;
+  justify-content: space-around;
+  text-align: center;
+}
+
+#name {
+  width: 50%;
+}
+
+#score {
+  width: 50%;
+}
