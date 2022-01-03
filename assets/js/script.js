@@ -15,7 +15,6 @@ var clearBtn = document.getElementById("clear");
 var result = document.getElementById("result");
 var restartBtn = document.getElementById("restart");
 displayHighScore.style.display = "none";
-
 nextQuestion.style.display = "none";
 scorePage.style.display = "none";
 highScore.style.display = "none";
@@ -94,13 +93,18 @@ function viewHighscore() {
   }
   clearBtn.addEventListener("click", function () {
     localStorage.clear();
-    confirm("Are you sure you want to clear all scores?");
-    window.location.reload();
+
+    const confReturn = confirm("Are you sure you want to clear all scores?");
+    if (confReturn) {
+      window.location.reload();
+    }
   });
 
   restartBtn.addEventListener("click", function () {
     window.location.reload();
   });
+  highScore.disabled = true;
+  highScore.style.backgroundColor = "grey";
 }
 
 var quizQuestions = [

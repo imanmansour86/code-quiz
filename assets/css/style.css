@@ -88,7 +88,7 @@ button:hover {
   display: flex;
   flex-direction: row;
   font-size: 14pt;
-  justify-content: space-around;
+  justify-content: space-evenly;
   text-align: center;
 }
 
