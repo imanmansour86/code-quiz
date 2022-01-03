@@ -20,10 +20,52 @@ scorePage.style.display = "none";
 highScore.style.display = "none";
 result.style.display = "none";
 var mainContainer = document.querySelector(".main-container");
+var quizQuestions = [
+  {
+    question: "What is not a data type in Javascript?",
+    answers: ["String", "Number", "BigIn", "Function"],
+    correctAnswer: "Function",
+  },
+  {
+    question:
+      "Which method returns the string representation of the number's value?",
+    answers: ["toString()", "toNumber() ", "toValue()", "None of the above"],
+    correctAnswer: "toString()",
+  },
+  {
+    question:
+      "Which built-in method calls a function for each element in the array?",
+    answers: ["map", "while", "loop()", "forEach()"],
+    correctAnswer: "forEach()",
+  },
+  {
+    question: "Inside which HTML element do we put the JavaScript?",
+    answers: ["js", "scripting", "script", "javascript"],
+    correctAnswer: "script",
+  },
+  {
+    question: "Which of the following best describes JavaScript?",
+    answers: [
+      "a low-level programming language",
+      "an object-oriented scripting language",
+      "text editor",
+      "a compiled scripting language",
+    ],
+    correctAnswer: "an object-oriented scripting language",
+  },
+  {
+    question: "What is meant by this keyword in javascript?",
+    answers: [
+      "refers to current object",
+      "refers to previous object",
+      "variable which contains value",
+      "none of the above",
+    ],
+    correctAnswer: "refers to current object",
+  },
+];
 
-startQuizBtn.addEventListener("click", setTime);
-
-function setTime() {
+startQuizBtn.addEventListener("click", function setTime() {
   mainContainer.style.display = "none";
 
   answerQuestion();
@@ -45,8 +87,7 @@ function setTime() {
       highScore.style.display = "block";
     }
   }, 1000);
-}
-
+});
 submitInitials.addEventListener("click", function (e) {
   e.preventDefault();
   var initials = document.getElementById("initial").value;
@@ -106,51 +147,6 @@ function viewHighscore() {
   highScore.disabled = true;
   highScore.style.backgroundColor = "grey";
 }
-
-var quizQuestions = [
-  {
-    question: "What is not a data type in Javascript?",
-    answers: ["String", "Number", "BigIn", "Function"],
-    correctAnswer: "Function",
-  },
-  {
-    question:
-      "Which method returns the string representation of the number's value?",
-    answers: ["toString()", "toNumber() ", "toValue()", "None of the above"],
-    correctAnswer: "toString()",
-  },
-  {
-    question:
-      "Which built-in method calls a function for each element in the array?",
-    answers: ["map", "while", "loop()", "forEach()"],
-    correctAnswer: "forEach()",
-  },
-  {
-    question: "Inside which HTML element do we put the JavaScript?",
-    answers: ["js", "scripting", "script", "javascript"],
-    correctAnswer: "script",
-  },
-  {
-    question: "Which of the following best describes JavaScript?",
-    answers: [
-      "a low-level programming language",
-      "an object-oriented scripting language",
-      "text editor",
-      "a compiled scripting language",
-    ],
-    correctAnswer: "an object-oriented scripting language",
-  },
-  {
-    question: "What is meant by this keyword in javascript?",
-    answers: [
-      "refers to current object",
-      "refers to previous object",
-      "variable which contains value",
-      "none of the above",
-    ],
-    correctAnswer: "refers to current object",
-  },
-];
 
 nextQuestion.addEventListener("click", function () {
   j += 1;
