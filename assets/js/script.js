@@ -15,6 +15,7 @@ displayHighScore.style.display = "none";
 
 nextQuestion.style.display = "none";
 scorePage.style.display = "none";
+highScore.style.display = "none";
 var mainContainer = document.querySelector(".main-container");
 
 startQuizBtn.addEventListener("click", setTime);
@@ -38,6 +39,7 @@ function setTime() {
       questionHeader.style.display = "none";
       scorePage.style.display = "block";
       currentScore.innerHTML = "Total score is: " + score;
+      highScore.style.display = "block";
     }
   }, 1000);
 }
@@ -58,14 +60,22 @@ highScore.addEventListener("click", viewHighscore);
 
 function viewHighscore() {
   mainContainer.style.display = "none";
-  displayHighScore.style.display = "flex";
+  questionHeader.style.display = "none";
+  nextQuestion.style.display = "none";
+  scorePage.style.display = "none";
 
-  // let initialName = localStorage.getItem("initials");
+  timer.textContent = "Highest Scores";
+  displayHighScore.style.display = "flex";
 
   var name = document.getElementById("name");
   var score = document.getElementById("score");
+  const allScores = Object.entries(localStorage); //read all keys/values from storage
 
-  for (let [key, value] of Object.entries(localStorage)) {
+  const highScoreObject = [...allScores] //make a copy of the object, sort and return the  highest first five values
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5);
+
+  for (let [key, value] of highScoreObject) {
     console.log(`${key}: ${value}`);
 
     const newNameDiv = document.createElement("div");
