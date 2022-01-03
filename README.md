@@ -1,12 +1,23 @@
 # Code-Quiz
 
+## Introduction
+
+This app is a timed quiz coding app about JavaScript fundamentals.It runs in the browser and features dynamically updated content powered by Javascript.
+
 ## Summary
 
-## Screenshot of the password generated
+The app starts with a Start Quiz button. When the user clicks on it, a series of questions are presented, and the timer starts. When the user answers a question incorrectly, time is subtracted from the total quiz time. When the user answers all questions or when the time is over, the user can save his initials and the score. The user can view highscores by pressing Highscores button in the scores page. Highscorers will show first five high scores.The initials and the scores are stored in local storage, so the data presists when the user refreshes the page. The user can then choose to clear the scores by pressing Clear Score button in the score page. The score page has a Restart Quiz button as well that restarts the whole quiz.
 
-A preview screenshot of the
+## Screenshots from the app
 
-![image](./app-screenshot.png)
+Question
+![image](/assets/images/Quiz-Question.png)
+
+Submit Initials
+![image](/assets/images/submit-initials.png)
+
+Score Page
+![image](/assets/images/score-page.png)
 
 ## Built With
 
@@ -22,7 +33,7 @@ A preview screenshot of the
 
 ## Links
 
-- [Deployed application]()
+- [Deployed application](https://imanmansour86.github.io/code-quiz/)
 
 ## Author
 
