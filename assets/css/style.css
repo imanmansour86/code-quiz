@@ -40,13 +40,8 @@ h1 {
 
 button:hover {
   background-color: grey;
+  user-select: none;
 }
-
-/* #question-body {
-  display: none;
-  font-size: 20px;
-  width: 100%;
-} */
 
 .question-header {
   display: block;
@@ -103,4 +98,10 @@ button:hover {
 
 #score {
   width: 50%;
+}
+
+#result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }

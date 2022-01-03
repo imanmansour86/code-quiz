@@ -11,11 +11,15 @@ var highScore = document.getElementById("high-scores");
 var currentScore = document.getElementById("total-score");
 var submitInitials = document.getElementById("submit-initials");
 var displayHighScore = document.getElementById("high-score");
+var clearBtn = document.getElementById("clear");
+var result = document.getElementById("result");
+var restartBtn = document.getElementById("restart");
 displayHighScore.style.display = "none";
 
 nextQuestion.style.display = "none";
 scorePage.style.display = "none";
 highScore.style.display = "none";
+result.style.display = "none";
 var mainContainer = document.querySelector(".main-container");
 
 startQuizBtn.addEventListener("click", setTime);
@@ -63,6 +67,7 @@ function viewHighscore() {
   questionHeader.style.display = "none";
   nextQuestion.style.display = "none";
   scorePage.style.display = "none";
+  result.style.display = "flex";
 
   timer.textContent = "Highest Scores";
   displayHighScore.style.display = "flex";
@@ -87,6 +92,15 @@ function viewHighscore() {
     newNameDiv.textContent = key;
     newScoreDiv.textContent = value;
   }
+  clearBtn.addEventListener("click", function () {
+    localStorage.clear();
+    confirm("Are you sure you want to clear all scores?");
+    window.location.reload();
+  });
+
+  restartBtn.addEventListener("click", function () {
+    window.location.reload();
+  });
 }
 
 var quizQuestions = [
@@ -143,7 +157,7 @@ nextQuestion.addEventListener("click", function () {
   }
   if (j >= quizQuestions.length) {
     console.log("test here" + quizQuestions.length);
-    alert("no more questions");
+    alert("No more questions!");
     nextQuestion.style.display = "none";
     quizTime = 0;
   } else {
