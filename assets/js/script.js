@@ -78,7 +78,7 @@ startQuizBtn.addEventListener("click", function setTime() {
       timer.textContent = "Time remaining: " + quizTime;
       quizTime--;
     }
-    //when time is up
+    //when time is up, hide all questions and display highscore page
     if (quizTime === 0) {
       console.log("time is up");
       clearInterval(timeInterval);
@@ -106,7 +106,7 @@ submitInitials.addEventListener("click", function (e) {
   viewHighscore();
 });
 
-//code to view high scores
+//When high scores button clicked, hide everything not related to scores
 highScore.addEventListener("click", viewHighscore);
 
 function viewHighscore() {
