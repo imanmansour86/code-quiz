@@ -2,11 +2,11 @@
 
 ## Introduction
 
-This app is a timed quiz coding app about JavaScript fundamentals.It runs in the browser and features dynamically updated content powered by Javascript.
+This app is a timed quiz coding app about JavaScript fundamentals. It runs in the browser and features dynamically updated content powered by Javascript.
 
 ## Summary
 
-The app starts with a Start Quiz button. When the user clicks on it, a series of questions are presented, and the timer starts. When the user answers a question incorrectly, time is subtracted from the total quiz time. When the user answers all questions or when the time is over, the user can save his initials and the score. The user can view highscores by pressing Highscores button in the scores page. Highscorers will show first five high scores.The initials and the scores are stored in local storage, so the data presists when the user refreshes the page. The user can then choose to clear the scores by pressing Clear Score button in the score page. The score page has a Restart Quiz button as well that restarts the whole quiz.
+The app starts with a Start Quiz button. When the user clicks on it, a series of questions are presented, and the timer starts. When the user answers a question incorrectly, time is subtracted from the total quiz time. When the user answers all questions or when the time is over, the user can save his initials and the score. The user can view highscores by pressing Highscores button in the scores page. Highscorers will show first five high scores. The initials and the scores are stored in local storage, so the data presists when the user refreshes the page. The user can then choose to clear the scores by pressing Clear Score button in the score page. The score page has a Restart Quiz button as well that restarts the whole quiz.
 
 ## Screenshots from the app
 

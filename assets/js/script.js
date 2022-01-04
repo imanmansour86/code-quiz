@@ -88,6 +88,7 @@ startQuizBtn.addEventListener("click", function setTime() {
     }
   }, 1000);
 });
+
 submitInitials.addEventListener("click", function (e) {
   e.preventDefault();
   var initials = document.getElementById("initial").value;
@@ -116,7 +117,7 @@ function viewHighscore() {
   var score = document.getElementById("score");
   const allScores = Object.entries(localStorage); //read all keys/values from storage
 
-  const highScoreObject = [...allScores] //make a copy of the object, sort and return the  highest first five values
+  const highScoreObject = [...allScores] //make a copy of the array object, sort and return the  highest first five values
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5);
 
@@ -156,7 +157,6 @@ nextQuestion.addEventListener("click", function () {
     document.getElementById(j - 1).remove();
   }
   if (j >= quizQuestions.length) {
-    console.log("test here" + quizQuestions.length);
     alert("No more questions!");
     nextQuestion.style.display = "none";
     quizTime = 0;
