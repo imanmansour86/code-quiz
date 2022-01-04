@@ -2,6 +2,7 @@ var quizTime = 100;
 var score = 0;
 let j = 0; //question index
 
+// get html elements
 var timer = document.querySelector(".time");
 var startQuizBtn = document.getElementById("start-quiz");
 var nextQuestion = document.getElementById("next-question");
@@ -20,6 +21,8 @@ scorePage.style.display = "none";
 highScore.style.display = "none";
 result.style.display = "none";
 var mainContainer = document.querySelector(".main-container");
+
+//variable to hold all questions
 var quizQuestions = [
   {
     question: "What is not a data type in Javascript?",
@@ -65,6 +68,7 @@ var quizQuestions = [
   },
 ];
 
+//start button code
 startQuizBtn.addEventListener("click", function setTime() {
   mainContainer.style.display = "none";
 
@@ -74,7 +78,7 @@ startQuizBtn.addEventListener("click", function setTime() {
       timer.textContent = "Time remaining: " + quizTime;
       quizTime--;
     }
-
+    //when time is up
     if (quizTime === 0) {
       console.log("time is up");
       clearInterval(timeInterval);
@@ -94,13 +98,15 @@ submitInitials.addEventListener("click", function (e) {
   var initials = document.getElementById("initial").value;
   console.log("submit your initial here " + initials);
 
+  //save initials and score in local storage
   localStorage.setItem(initials, score);
   console.log(localStorage);
   scorePage.style.display = "none";
-  timer.textContent = "Score Page";
+  timer.textContent = "Score Page"; //update text content in score page
   viewHighscore();
 });
 
+//code to view high scores
 highScore.addEventListener("click", viewHighscore);
 
 function viewHighscore() {
@@ -117,10 +123,10 @@ function viewHighscore() {
   var score = document.getElementById("score");
   const allScores = Object.entries(localStorage); //read all keys/values from storage
 
-  const highScoreObject = [...allScores] //make a copy of the array object, sort and return the  highest first five values
+  const highScoreObject = [...allScores] //make a copy of the array object, sort and return the highest first five values
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5);
-
+  //loop over highScoreObject array, get initials and score and add them to html
   for (let [key, value] of highScoreObject) {
     console.log(`${key}: ${value}`);
 
@@ -134,16 +140,16 @@ function viewHighscore() {
     newScoreDiv.textContent = value;
   }
   clearBtn.addEventListener("click", function () {
-    localStorage.clear();
+    localStorage.clear(); //clear local storage from any saved keys/values
 
     const confReturn = confirm("Are you sure you want to clear all scores?");
     if (confReturn) {
-      window.location.reload();
+      window.location.reload(); //refersh page
     }
   });
 
   restartBtn.addEventListener("click", function () {
-    window.location.reload();
+    window.location.reload(); //refresh page to restart game
   });
   highScore.disabled = true;
   highScore.style.backgroundColor = "grey";
@@ -157,9 +163,10 @@ nextQuestion.addEventListener("click", function () {
     document.getElementById(j - 1).remove();
   }
   if (j >= quizQuestions.length) {
+    //no more questions
     alert("No more questions!");
     nextQuestion.style.display = "none";
-    quizTime = 0;
+    quizTime = 0; //end time
   } else {
     answerQuestion();
   }
@@ -168,15 +175,16 @@ nextQuestion.addEventListener("click", function () {
 function answerQuestion() {
   var body = document.body;
 
+  //create question div with id j
   var question = document.createElement("div");
-
   questionHeader.setAttribute("id", j);
-
+  //add question header to question div
   questionHeader.textContent = quizQuestions[j].question;
   questionHeader.classList.add("question-header");
   question.appendChild(questionHeader);
   body.appendChild(question);
 
+  //create div for question result to hold the list of answers for each question
   var questionResult = document.createElement("div");
   questionResult.classList.add("question-result");
 
@@ -200,6 +208,7 @@ function answerQuestion() {
     radioContainer.appendChild(radioLabel);
 
     radioBtn.addEventListener("click", function (e) {
+      //when the user chooses a certain radio button
       console.log("the click is ", e.target.value);
 
       document.getElementById(j).appendChild(questionResult);
@@ -207,13 +216,14 @@ function answerQuestion() {
       var correctChoice = quizQuestions[j].correctAnswer;
 
       if (e.target.value == correctChoice) {
+        //if the target click matches the correct answer
         console.log("user answer is", e.target.value);
-        score += 10;
+        score += 10; //increment score
         console.log("the answer is correct, score is " + score);
         questionResult.textContent = "Correct answer";
       } else {
-        score -= 10;
-        quizTime -= 10;
+        score -= 10; //if wrong answer decrement score
+        quizTime -= 10; //if wrong answer decrement time
 
         questionResult.textContent = "Wrong answer";
       }
